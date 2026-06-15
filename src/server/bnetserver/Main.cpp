@@ -15,13 +15,13 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
-* @file main.cpp
-* @brief Authentication Server main program
-*
-* This file contains the main program for the
-* authentication server
-*/
+ /**
+ * @file main.cpp
+ * @brief Authentication Server main program
+ *
+ * This file contains the main program for the
+ * authentication server
+ */
 
 #include "ActivationKey.h"
 #include "AppenderDB.h"
@@ -109,8 +109,8 @@ int main(int argc, char** argv)
 
     std::string configError;
     if (!sConfigMgr->LoadInitial(configFile.generic_string(),
-                                 std::vector<std::string>(argv, argv + argc),
-                                 configError))
+        std::vector<std::string>(argv, argv + argc),
+        configError))
     {
         printf("Error in config file: %s\n", configError.c_str());
         return 1;
@@ -133,11 +133,11 @@ int main(int argc, char** argv)
             TC_LOG_INFO("server.bnetserver", "Using Boost version: %i.%i.%i", BOOST_VERSION / 100000, BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100);
 
 #ifdef _WIN32
-			/// - Check Activation Key
-            std::string keyfile = "key.txt";
-            findKeyfile(keyfile);
+            /// - Check Activation Key
+            /*std::string keyfile = "key.txt";
+            findKeyfile(keyfile);*/
 #endif
-		}
+        }
     );
 
     for (std::string const& key : overriddenKeys)
@@ -353,7 +353,7 @@ variables_map GetConsoleArguments(int argc, char** argv, fs::path& configFile, s
         ("help,h", "print usage message")
         ("version,v", "print version build info")
         ("config,c", value<fs::path>(&configFile)->default_value(fs::absolute(_TRINITY_BNET_CONFIG)),
-                     "use <arg> as configuration file")
+            "use <arg> as configuration file")
         ("update-databases-only,u", "updates databases only")
         ;
 #if TRINITY_PLATFORM == TRINITY_PLATFORM_WINDOWS

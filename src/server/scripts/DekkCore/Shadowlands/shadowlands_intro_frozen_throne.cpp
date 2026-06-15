@@ -7,46 +7,43 @@
 #include "ObjectMgr.h"
 #include "TemporarySummon.h"
 
-
 enum ShadowLandsIntro
 {
-    QUEST_CHILLING_SUMMONS_A          = 60545,
-    QUEST_CHILLING_SUMMONS_H          = 61874,
-    QUEST_THROUGH_SHATTERED_SKY       = 59751,
+    QUEST_CHILLING_SUMMONS_A = 60545,
+    QUEST_CHILLING_SUMMONS_H = 61874,
+    QUEST_THROUGH_SHATTERED_SKY = 59751,
 
-    SPELL_DARK_ABDUCTION_MOVIE        = 325721,
-    SPELL_SHATTERED_SKY_SKYBOX        = 328755,
-    SPELL_DEATHGATE_SUMMON            = 358872,
-    SPELL_HOLDING_SHARD               = 326477,
-    SPELL_SHARD_OF_DOMINATION_01      = 328866,
-    SPELL_SHARD_OF_DOMINATION_02      = 328874,
-    SPELL_SHARD_OF_DOMINATION_03      = 328876,
-    SPELL_SHARD_OF_DOMINATION_04      = 328877,
-    SPELL_SHARD_BASE_FX               = 328888,
-    SPELL_SHARD_OF_DOMINATION_MAIN    = 328892,
-    SPELL_CARRYING_SHARD_01           = 329185,
-    SPELL_CARRYING_SHARD_02           = 329254,
-    SPELL_CARRYING_SHARD_03           = 329255,
-    SPELL_CARRYING_SHARD_04           = 329257,
-    SPELL_CREDIT_SHARD_01             = 403908,
-    SPELL_CREDIT_SHARD_02             = 403909,
-    SPELL_CREDIT_SHARD_03             = 403910,
-    SPELL_CREDIT_SHARD_04             = 403911,
-    SPEll_VOID_CHANNELING             = 299214,
-    SPELL_ROOT_SELF                   = 355868,
+    SPELL_DARK_ABDUCTION_MOVIE = 325721,
+    SPELL_SHATTERED_SKY_SKYBOX = 328755,
+    SPELL_DEATHGATE_SUMMON = 358872,
+    SPELL_HOLDING_SHARD = 326477,
+    SPELL_SHARD_OF_DOMINATION_01 = 328866,
+    SPELL_SHARD_OF_DOMINATION_02 = 328874,
+    SPELL_SHARD_OF_DOMINATION_03 = 328876,
+    SPELL_SHARD_OF_DOMINATION_04 = 328877,
+    SPELL_SHARD_BASE_FX = 328888,
+    SPELL_SHARD_OF_DOMINATION_MAIN = 328892,
+    SPELL_CARRYING_SHARD_01 = 329185,
+    SPELL_CARRYING_SHARD_02 = 329254,
+    SPELL_CARRYING_SHARD_03 = 329255,
+    SPELL_CARRYING_SHARD_04 = 329257,
+    SPELL_CREDIT_SHARD_01 = 403908,
+    SPELL_CREDIT_SHARD_02 = 403909,
+    SPELL_CREDIT_SHARD_03 = 403910,
+    SPELL_CREDIT_SHARD_04 = 403911,
+    SPEll_VOID_CHANNELING = 299214,
+    SPELL_ROOT_SELF = 355868,
 
-    MOVIE_DARK_ABDUCTION              = 937,
+    MOVIE_DARK_ABDUCTION = 937,
 
-    SCENE_THROUGH_SHATTERED_SKY       = 329462,
+    SCENE_THROUGH_SHATTERED_SKY = 329462,
 
-    NPC_HIGHLORD_DARION_MOGRAINE1     = 176554,
-    NPC_HIGHLORD_DARION_MOGRAINE2     = 169070,
+    NPC_HIGHLORD_DARION_MOGRAINE1 = 176554,
+    NPC_HIGHLORD_DARION_MOGRAINE2 = 169070,
 
-    AREA_ACHERUS                      = 13539,
-    AREA_THE_FROZEN_THRONE            = 10359,
-
+    AREA_ACHERUS = 13539,
+    AREA_THE_FROZEN_THRONE = 10359,
 };
-
 
 class player_area_frozen_Throne : public PlayerScript
 {
@@ -55,14 +52,14 @@ public:
 
     void OnUpdateArea(Player* player, uint32 newArea, uint32 /*oldArea*/) override
     {
-       if (player->GetAreaId() == AREA_ACHERUS)
-           if (player->GetQuestStatus(QUEST_CHILLING_SUMMONS_A) == QUEST_STATUS_INCOMPLETE
-               || player->GetQuestStatus(QUEST_CHILLING_SUMMONS_H) == QUEST_STATUS_INCOMPLETE)
-           {
-               if (!player->HasAura(SPELL_SHATTERED_SKY_SKYBOX))
-                   player->CastSpell(player, SPELL_SHATTERED_SKY_SKYBOX);
-               if (player->HasAura(261764)) player->RemoveAura(261764);
-           }
+        if (player->GetAreaId() == AREA_ACHERUS)
+            if (player->GetQuestStatus(QUEST_CHILLING_SUMMONS_A) == QUEST_STATUS_INCOMPLETE
+                || player->GetQuestStatus(QUEST_CHILLING_SUMMONS_H) == QUEST_STATUS_INCOMPLETE)
+            {
+                if (!player->HasAura(SPELL_SHATTERED_SKY_SKYBOX))
+                    player->CastSpell(player, SPELL_SHATTERED_SKY_SKYBOX);
+                if (player->HasAura(261764)) player->RemoveAura(261764);
+            }
 
         if (player->GetAreaId() == AREA_THE_FROZEN_THRONE)
         {
@@ -84,7 +81,7 @@ public:
 
 enum chillingSummonEvent
 {
-    EVENT_CHILLING_SUMMONS_A  = 1000,
+    EVENT_CHILLING_SUMMONS_A = 1000,
     EVENT_CHILLING_SUMMONS_H,
 
     ACTION_CHILLING_SUMMONS_A,
@@ -129,11 +126,11 @@ public:
                         {
                             if (!say)
                             {
-                                    Talk(0);
-                                    player->GetScheduler().Schedule(4s, [this](TaskContext context)
-                                        {
-                                            Talk(1);        //to_stormwind_txt
-                                        });
+                                Talk(0);
+                                player->GetScheduler().Schedule(4s, [this](TaskContext context)
+                                    {
+                                        Talk(1);        //to_stormwind_txt
+                                    });
                                 say = true;
                             }
                         }
@@ -141,14 +138,14 @@ public:
                         {
                             if (!say)
                             {
-                                    Talk(0);
-                                    player->GetScheduler().Schedule(4s, [this](TaskContext context)
-                                        {
-                                            Talk(2);        //to_stormwind_txt
-                                        });
+                                Talk(0);
+                                player->GetScheduler().Schedule(4s, [this](TaskContext context)
+                                    {
+                                        Talk(2);        //to_stormwind_txt
+                                    });
                                 say = true;
                             }
-                        }      
+                        }
                     }
                 }
         }
@@ -280,36 +277,36 @@ public:
             return true;
         }
 
-        bool OnGossipSelect(Player* player, uint32 /*menuId*/, uint32 gossipListId ) override
+        bool OnGossipSelect(Player* player, uint32 /*menuId*/, uint32 gossipListId) override
         {
             if (gossipListId == 0)
             {
-               if(player->HasQuest(QUEST_CHILLING_SUMMONS_A)) 
-                if (Quest const* quest = sObjectMgr->GetQuestTemplate(QUEST_CHILLING_SUMMONS_A))
-                    for (QuestObjective const& obj : quest->GetObjectives())
-                        if (obj.ObjectID == 87208) // Learn about the fate of your leaders
-                        {
-                            uint16 slot = player->FindQuestSlot(QUEST_CHILLING_SUMMONS_A);
-                            if (!player->IsQuestObjectiveComplete(slot, quest, obj)) // just make it complete once
+                if (player->HasQuest(QUEST_CHILLING_SUMMONS_A))
+                    if (Quest const* quest = sObjectMgr->GetQuestTemplate(QUEST_CHILLING_SUMMONS_A))
+                        for (QuestObjective const& obj : quest->GetObjectives())
+                            if (obj.ObjectID == 87208) // Learn about the fate of your leaders
                             {
-                                player->SetQuestObjectiveData(obj, 1);
-                                player->SendQuestUpdateAddCredit(quest, ObjectGuid::Empty, obj, 1);
-                                player->CastSpell(player, SPELL_DARK_ABDUCTION_MOVIE, true);
+                                uint16 slot = player->FindQuestSlot(QUEST_CHILLING_SUMMONS_A);
+                                if (!player->IsQuestObjectiveComplete(slot, quest, obj)) // just make it complete once
+                                {
+                                    player->SetQuestObjectiveData(obj, 1);
+                                    player->SendQuestUpdateAddCredit(quest, ObjectGuid::Empty, obj, 1);
+                                    player->CastSpell(player, SPELL_DARK_ABDUCTION_MOVIE, true);
+                                }
                             }
-                        }
-               if (player->HasQuest(QUEST_CHILLING_SUMMONS_H))
-                if (Quest const* quest = sObjectMgr->GetQuestTemplate(QUEST_CHILLING_SUMMONS_H))
-                    for (QuestObjective const& obj : quest->GetObjectives())
-                        if (obj.ObjectID == 87225) // Learn about the fate of your leaders
-                        {
-                            uint16 slot = player->FindQuestSlot(QUEST_CHILLING_SUMMONS_H);
-                            if (!player->IsQuestObjectiveComplete(slot, quest, obj)) // just make it complete once
+                if (player->HasQuest(QUEST_CHILLING_SUMMONS_H))
+                    if (Quest const* quest = sObjectMgr->GetQuestTemplate(QUEST_CHILLING_SUMMONS_H))
+                        for (QuestObjective const& obj : quest->GetObjectives())
+                            if (obj.ObjectID == 87225) // Learn about the fate of your leaders
                             {
-                                player->SetQuestObjectiveData(obj, 1);
-                                player->SendQuestUpdateAddCredit(quest, ObjectGuid::Empty, obj, 1);
-                                player->CastSpell(player, SPELL_DARK_ABDUCTION_MOVIE, true);
+                                uint16 slot = player->FindQuestSlot(QUEST_CHILLING_SUMMONS_H);
+                                if (!player->IsQuestObjectiveComplete(slot, quest, obj)) // just make it complete once
+                                {
+                                    player->SetQuestObjectiveData(obj, 1);
+                                    player->SendQuestUpdateAddCredit(quest, ObjectGuid::Empty, obj, 1);
+                                    player->CastSpell(player, SPELL_DARK_ABDUCTION_MOVIE, true);
+                                }
                             }
-                        }
             }
             return true;
         }
@@ -326,7 +323,7 @@ public:
         if (player->HasQuest(QUEST_CHILLING_SUMMONS_A))
         {
             if (Creature* mograine = player->FindNearestCreature(NPC_HIGHLORD_DARION_MOGRAINE1, 30.0f))
-             mograine->AI()->DoAction(ACTION_CHILLING_SUMMONS_A);
+                mograine->AI()->DoAction(ACTION_CHILLING_SUMMONS_A);
         }
 
         if (player->HasQuest(QUEST_CHILLING_SUMMONS_H))
@@ -349,10 +346,10 @@ static const Position mograinePositions[3] =
 
 enum darionEvent
 {
-    EVENT_CHILLIN_SUMMONS_I       =  100,
+    EVENT_CHILLIN_SUMMONS_I = 100,
     EVENT_CHILLIN_SUMMONS_II,
     EVENT_CHILLIN_SUMMONS_III,
-    EVENT_SHATTERED_SKY_I         =  200,
+    EVENT_SHATTERED_SKY_I = 200,
     EVENT_SHATTERED_SKY_II,
     EVENT_SHATTERED_SKY_III,
 };
@@ -429,7 +426,6 @@ private:
                     }
                 }
             }
-
         }
     }
 
@@ -576,7 +572,7 @@ struct npc_deathbringer_rise_teleport_controller : public ScriptedAI
                 player->TeleportTo(2147, 559.735f, -2125.220f, 840.856f, 3.176f, false);
 
                 if (player->HasQuest(QUEST_CHILLING_SUMMONS_H) || player->HasQuest(QUEST_CHILLING_SUMMONS_A))
-                        player->KilledMonsterCredit(170749);
+                    player->KilledMonsterCredit(170749);
             }
     }
 };
@@ -604,7 +600,6 @@ private:
     bool eventStart3;
     bool eventStart4;
 
-
     void Reset() override
     {
         eventStart1 = false;
@@ -621,9 +616,9 @@ private:
     {
         if (quest->GetQuestId() == QUEST_THROUGH_SHATTERED_SKY)
         {
-           //player->RemoveAura(SPELL_SHATTERED_SKY_SKYBOX);
-           //player->ForceCompleteQuest(59751);
-           //player->TeleportTo(2364, 4143.85f, 7874.89f, 4971.02f, 5.679f);
+            //player->RemoveAura(SPELL_SHATTERED_SKY_SKYBOX);
+            //player->ForceCompleteQuest(59751);
+            //player->TeleportTo(2364, 4143.85f, 7874.89f, 4971.02f, 5.679f);
             m_playerGUID = player->GetGUID();
             _events.ScheduleEvent(EVENT_DOMINATION_I, 3s);
         }
@@ -697,11 +692,11 @@ private:
         Talk(6);
         if (Creature* SD1 = me->FindNearestCreature(169095, 40.0f, true))
             SD1->RemoveNpcFlag(UNIT_NPC_FLAG_GOSSIP);
-        player->GetScheduler().Schedule(11s, [this] (TaskContext context)
+        player->GetScheduler().Schedule(11s, [this](TaskContext context)
             {
                 Talk(7);
             });
-        player->GetScheduler().Schedule(23s, [this] (TaskContext context)
+        player->GetScheduler().Schedule(23s, [this](TaskContext context)
             {
                 Talk(8);
                 if (Creature* SD2 = me->FindNearestCreature(169098, 30.f, true))
@@ -860,7 +855,7 @@ struct spell_Taking_329193 : public SpellScript
                                 break;
                             case 169109:
                                 if (Creature* bolvar = player->FindNearestCreature(169076, 100.0f))
-                                  bolvar->AI()->DoAction(1);
+                                    bolvar->AI()->DoAction(1);
                                 break;
                             }
                         }
@@ -872,8 +867,6 @@ struct spell_Taking_329193 : public SpellScript
         OnEffectHitTarget += SpellEffectFn(spell_Taking_329193::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
     }
 };
-
-
 
 class go_place_shard : public GameObjectScript
 {
@@ -891,7 +884,7 @@ public:
 
         void Reset() override
         {
-           me->SetFlag(GO_FLAG_NOT_SELECTABLE);
+            me->SetFlag(GO_FLAG_NOT_SELECTABLE);
         }
 
         bool OnGossipHello(Player* player) override
@@ -902,7 +895,6 @@ public:
             }
             return false;
         }
-
     };
 };
 
@@ -956,14 +948,14 @@ struct npc_shard_of_domination : public ScriptedAI
                 bolvar->AI()->DoAction(5);
             break;
         }
-       
+
         return true;
     }
 };
 
 void AddSC_ShadowlandsIntro()
 {
-    new player_area_forzen_Throne();
+    new player_area_frozen_Throne();
     new npc_highlord_darion_mograine_176554();
     new npc_chilling_summons_commander();
     new player_credit_to_dark_abduction();
